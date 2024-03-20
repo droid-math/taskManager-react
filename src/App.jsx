@@ -6,7 +6,8 @@ import { Menu } from 'primereact/menu';
 import { Panel } from 'primereact/panel';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
-import TaskGrid from './components/Grid'
+import TaskGrid from './components/grid/Grid';
+import LeftMenu from './components/menu/Menu';
 
 import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -17,20 +18,6 @@ import './App.css';
 
 const App = () => {
   const [tasks, setTasks] = useState([])
-  const [items, setItems] = useState([
-    {
-      label: 'Dashboard',
-      icon: 'pi pi-fw pi-home',
-    },
-    {
-      label: 'Gerenciar Usuários',
-      icon: 'pi pi-fw pi-user',
-    },
-    {
-      label: 'Logout',
-      icon: 'pi pi-fw pi-sign-out',
-    },
-  ]);
 
   const handleEdit = (item) => {
     // Implementar a lógica de edição do item
@@ -39,7 +26,7 @@ const App = () => {
 
   return (
     <div className='app flex'>
-      <Menu model={items} className="w-full mr-4 md:w-2 rem font-semibold text-lg"  />
+      <LeftMenu />
       <div>
         <TaskGrid />
       </div>
