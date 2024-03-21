@@ -5,38 +5,11 @@ import { Column } from 'primereact/column';
 import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import { Dropdown } from 'primereact/dropdown';
+import NewDialog from '../dialogs/New';
 
 const TaskGrid = () => {
     const [tasks, setTasks] = useState([]);
     const [newVisible, setNewVisible] = useState(false);
-    const [newTaskOwner, setNewTaskOwner] = useState([]);
-    const [newTaskPriority, setNewTaskPriority] = useState([]);
-    const [owners, setOwners] = useState([{
-      name: "Matheus",
-      userId: 1
-    }, {
-      name: "Gian",
-      userId: 2
-    }, {
-      name: "Leandro",
-      userId: 3
-    }, {
-      name: "Gustavo",
-      userId: 4
-    }]);
-    const [priority, setPriority] = useState([{
-      typeName: "Alta",
-      type: 1
-    }, {
-      typeName: "Média",
-      type: 2
-    }, {
-      typeName: "Alta",
-      type: 3
-    }]);
 
     useEffect(() => {
         setTasks(TaskService.getTasksData());
@@ -66,30 +39,7 @@ const TaskGrid = () => {
       const header = (
         <div className="align-items-center justify-content-between">
            <Button label="Novo" icon="pi pi-plus" size="small" onClick={() => setNewVisible(true)} />
-           <Dialog header="Criar novo Item" visible={newVisible} style={{width: '60vw', height: '70vh'}} onHide={() => setNewVisible(false)}>
-            <div className="flex flex-column gap-2">
-              <label htmlFor="taskName">Nome da Tarefa: </label>
-              <InputText id="taskName"/>
-            </div>
-            <div className='flex mt-2'>
-              <Dropdown 
-                placeholder="Selecione um Responsável"
-                options={owners}
-                value={newTaskOwner}
-                optionLabel="name" 
-                onChange={(e) => setNewTaskOwner(e.value)}
-                className="w-full"
-              />
-              <Dropdown 
-                placeholder="Prioridade"
-                options={priority}
-                optionLabel="typeName" 
-                value={newTaskPriority}
-                onChange={(e) => setNewTaskPriority(e.value)}
-                className="w-full"
-              />
-            </div>
-           </Dialog>
+           <NewDialog onHide={() => setNewVisible(false)} visible={newVisible}/>
         </div>
       );
       const footer = `In total there are ${tasks ? tasks.length : 0} products.`;
@@ -111,7 +61,7 @@ const TaskGrid = () => {
     };
 
     return (
-        <DataTable size='normal' value={tasks} rows={10} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
+        <DataTable size='small' value={tasks} selectionMode="single" rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
           <Column field="name" header="Name"></Column>
           <Column field="price" header="Price" body={priceBodyTemplate}></Column>
           <Column field="category" header="Category"></Column>
