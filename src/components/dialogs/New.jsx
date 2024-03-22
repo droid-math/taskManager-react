@@ -3,8 +3,9 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { Button } from 'primereact/button';
 
-const NewDialog = () => {
+const NewDialog = ({newVisible}) => {
     const [newTaskOwner, setNewTaskOwner] = useState([]);
     const [newTaskPriority, setNewTaskPriority] = useState([]);
     const [owners, setOwners] = useState([{
@@ -31,7 +32,7 @@ const NewDialog = () => {
         type: 3
       }]);
     return (
-        <Dialog header="Criar novo Item" style={{width: '60vw', height: '70vh'}}>
+        <Dialog visible={newVisible} header="Criar novo Item" style={{width: '60vw', height: '75vh'}}>
             <div className="flex flex-column gap-2">
               <label htmlFor="taskName">Nome da Tarefa: </label>
               <InputText id="taskName"/>
@@ -57,6 +58,9 @@ const NewDialog = () => {
             <div className="flex flex-column gap-2 mt-2">
               <label htmlFor="taskDescription">Descrição da Tarefa: </label>
               <InputTextarea autoResize id="taskDescription" rows={8} cols={30} />
+            </div>
+            <div className="dialogBtns pt-2 flex justify-content-end">
+              <Button label="Criar" icon="pi pi-plus" size="small"/>
             </div>
         </Dialog>
     );
