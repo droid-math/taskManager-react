@@ -6,6 +6,7 @@ import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import NewDialog from '../dialogs/New';
+import './Grid.scss'
 
 const TaskGrid = () => {
     const [tasks, setTasks] = useState([]);
@@ -39,7 +40,7 @@ const TaskGrid = () => {
       const header = (
         <div className="align-items-center justify-content-between">
            <Button label="Novo" icon="pi pi-plus" size="small" onClick={() => setNewVisible(true)} />
-           <NewDialog onHide={() => setNewVisible(false)} visible={newVisible}/>
+           <NewDialog onHide={() => setNewVisible(false)} newVisible={newVisible}/>
         </div>
       );
       const footer = `In total there are ${tasks ? tasks.length : 0} products.`;
@@ -61,13 +62,15 @@ const TaskGrid = () => {
     };
 
     return (
-        <DataTable size='small' value={tasks} selectionMode="single" rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
-          <Column field="name" header="Name"></Column>
-          <Column field="price" header="Price" body={priceBodyTemplate}></Column>
-          <Column field="category" header="Category"></Column>
-          <Column field="rating" header="Reviews" body={ratingBodyTemplate}></Column>
-          <Column header="Status" body={statusBodyTemplate}></Column>
-        </DataTable>
+        <div className="grid">
+          <DataTable size='small' value={tasks} selectionMode="single" rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
+            <Column field="name" header="Descrição"></Column>
+            <Column field="price" header="Responsável" body={priceBodyTemplate}></Column>
+            <Column field="category" header="Prioridade"></Column>
+            <Column field="rating" header="Status" body={ratingBodyTemplate}></Column>
+            <Column header="Status" body={statusBodyTemplate}></Column>
+          </DataTable>
+        </div>
     );
 };
 
