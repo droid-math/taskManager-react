@@ -40,7 +40,7 @@ const TaskGrid = () => {
       const header = (
         <div className="align-items-center justify-content-between">
            <Button label="Novo" icon="pi pi-plus" size="small" onClick={() => setNewVisible(true)} />
-           <NewDialog onHide={() => setNewVisible(false)} newVisible={newVisible}/>
+           <NewDialog setVisible={setNewVisible} newVisible={newVisible}/>
         </div>
       );
       const footer = `In total there are ${tasks ? tasks.length : 0} products.`;

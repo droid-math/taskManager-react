@@ -5,7 +5,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 
-const NewDialog = ({newVisible}) => {
+const NewDialog = ({setVisible, newVisible}) => {
     const [newTaskOwner, setNewTaskOwner] = useState([]);
     const [newTaskPriority, setNewTaskPriority] = useState([]);
     const [owners, setOwners] = useState([{
@@ -32,7 +32,7 @@ const NewDialog = ({newVisible}) => {
         type: 3
       }]);
     return (
-        <Dialog visible={newVisible} header="Criar novo Item" style={{width: '60vw', height: '75vh'}}>
+        <Dialog visible={newVisible} header="Criar novo Item" style={{width: '60vw', height: '75vh'}} onHide={() => setVisible(false)}>
             <div className="flex flex-column gap-2">
               <label htmlFor="taskName">Nome da Tarefa: </label>
               <InputText id="taskName"/>
