@@ -16,6 +16,9 @@ const TaskGrid = () => {
         setTasks(TaskService.getTasksData());
     }, []);
 
+    const statusString = ['Á Fazer', 'Em Andamento', 'Concluído'];
+    const priorityString = ['Baixa', 'Média', 'Alta']
+
     const handleEdit = (item) => {
         // Implementar a lógica de edição do item
         console.log('Editar item:', item);
@@ -29,14 +32,14 @@ const TaskGrid = () => {
         return formatCurrency(task.price);
       };
     
-      const ratingBodyTemplate = (task) => {
-        return <Rating value={task.rating} readOnly cancel={false} />;
+      const priorityBodyTemplate = (task) => {
+          return <Tag value={priorityString[task.taskPriority]}></Tag>;
       };
-    
+      
       const statusBodyTemplate = (task) => {
-          return <Tag value={task.inventoryStatus} severity={getSeverity(task)}></Tag>;
-      };
-    
+        return <Tag value={statusString[task.taskStatus]} severity={getSeverity(task)}></Tag>;
+    };
+      
       const header = (
         <div className="align-items-center justify-content-between">
            <Button label="Novo" icon="pi pi-plus" size="small" onClick={() => setNewVisible(true)} />
@@ -45,15 +48,15 @@ const TaskGrid = () => {
       );
       const footer = `In total there are ${tasks ? tasks.length : 0} products.`;
     
-      const getSeverity = (product) => {
-        switch (product.inventoryStatus) {
-            case 'INSTOCK':
+      const getSeverity = (task) => {
+        switch (task.taskStatus) {
+            case 2:
                 return 'success';
     
-            case 'LOWSTOCK':
+            case 1:
                 return 'warning';
     
-            case 'OUTOFSTOCK':
+            case 0:
                 return 'danger';
     
             default:
@@ -66,9 +69,8 @@ const TaskGrid = () => {
           <DataTable size='small' value={tasks} selectionMode="single" rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
             <Column field="name" header="Descrição"></Column>
             <Column field="price" header="Responsável" body={priceBodyTemplate}></Column>
-            <Column field="category" header="Prioridade"></Column>
-            <Column field="rating" header="Status" body={ratingBodyTemplate}></Column>
-            <Column header="Status" body={statusBodyTemplate}></Column>
+            <Column header="Prioridade" body={priorityBodyTemplate} align="center" alignHeader="center"></Column>
+            <Column header="Status" body={statusBodyTemplate} align="center" alignHeader="center"></Column>
           </DataTable>
         </div>
     );

@@ -8,9 +8,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 65,
                 category: 'Accessories',
-                quantity: 24,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1001',
@@ -19,9 +18,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 72,
                 category: 'Accessories',
-                quantity: 61,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1002',
@@ -30,9 +28,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 79,
                 category: 'Fitness',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3
+                taskPriority: 1,
+                taskStatus: 1
             },
             {
                 id: '1003',
@@ -41,9 +38,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 29,
                 category: 'Clothing',
-                quantity: 25,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 2,
+                taskStatus: 2
             },
             {
                 id: '1004',
@@ -52,9 +48,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 15,
                 category: 'Accessories',
-                quantity: 73,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 2,
+                taskStatus: 2
             },
             {
                 id: '1005',
@@ -63,9 +58,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 120,
                 category: 'Accessories',
-                quantity: 0,
-                inventoryStatus: 'OUTOFSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 0
             },
             {
                 id: '1006',
@@ -74,9 +68,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 32,
                 category: 'Accessories',
-                quantity: 5,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1007',
@@ -85,9 +78,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 34,
                 category: 'Accessories',
-                quantity: 23,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1008',
@@ -96,9 +88,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 99,
                 category: 'Electronics',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1009',
@@ -107,9 +98,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 299,
                 category: 'Electronics',
-                quantity: 63,
-                inventoryStatus: 'INSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1010',
@@ -118,9 +108,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 24,
                 category: 'Accessories',
-                quantity: 0,
-                inventoryStatus: 'OUTOFSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 0
             },
             {
                 id: '1011',
@@ -129,9 +118,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 89,
                 category: 'Electronics',
-                quantity: 23,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1012',
@@ -140,9 +128,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 49,
                 category: 'Clothing',
-                quantity: 74,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1013',
@@ -151,9 +138,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 48,
                 category: 'Clothing',
-                quantity: 0,
-                inventoryStatus: 'OUTOFSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 0
             },
             {
                 id: '1014',
@@ -162,9 +148,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 175,
                 category: 'Electronics',
-                quantity: 8,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1015',
@@ -173,9 +158,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 49,
                 category: 'Clothing',
-                quantity: 34,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1016',
@@ -184,9 +168,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 79,
                 category: 'Fitness',
-                quantity: 12,
-                inventoryStatus: 'INSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1017',
@@ -195,9 +178,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 85,
                 category: 'Clothing',
-                quantity: 42,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1018',
@@ -206,9 +188,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 56,
                 category: 'Accessories',
-                quantity: 41,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1019',
@@ -217,9 +198,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 79,
                 category: 'Fitness',
-                quantity: 63,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1020',
@@ -228,9 +208,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 110,
                 category: 'Accessories',
-                quantity: 0,
-                inventoryStatus: 'OUTOFSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 0
             },
             {
                 id: '1021',
@@ -239,9 +218,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 79,
                 category: 'Fitness',
-                quantity: 6,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1022',
@@ -250,9 +228,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 45,
                 category: 'Accessories',
-                quantity: 62,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1023',
@@ -261,9 +238,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 49,
                 category: 'Clothing',
-                quantity: 2,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1024',
@@ -272,9 +248,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 64,
                 category: 'Clothing',
-                quantity: 0,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1025',
@@ -283,9 +258,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 78,
                 category: 'Clothing',
-                quantity: 52,
-                inventoryStatus: 'INSTOCK',
-                rating: 4
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1026',
@@ -294,9 +268,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 49,
                 category: 'Clothing',
-                quantity: 3,
-                inventoryStatus: 'LOWSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 1
             },
             {
                 id: '1027',
@@ -305,9 +278,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 89,
                 category: 'Electronics',
-                quantity: 35,
-                inventoryStatus: 'INSTOCK',
-                rating: 3
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1028',
@@ -316,9 +288,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 20,
                 category: 'Fitness',
-                quantity: 15,
-                inventoryStatus: 'INSTOCK',
-                rating: 5
+                taskPriority: 0,
+                taskStatus: 2
             },
             {
                 id: '1029',
@@ -327,9 +298,8 @@ export const TaskService = {
                 description: 'Product Description',
                 price: 20,
                 category: 'Fitness',
-                quantity: 25,
-                inventoryStatus: 'INSTOCK',
-                rating: 8
+                taskPriority: 0,
+                taskStatus: 2
             }
         ];
     },
