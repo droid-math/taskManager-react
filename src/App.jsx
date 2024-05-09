@@ -17,13 +17,6 @@ import './App.css';
 
 
 const App = () => {
-  const [tasks, setTasks] = useState([])
-
-  const handleEdit = (item) => {
-    // Implementar a lógica de edição do item
-    console.log('Editar item:', item);
-  };
-
   return (
     <div className='app flex'>
       <LeftMenu />
