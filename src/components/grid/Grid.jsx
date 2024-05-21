@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { TaskService } from '../../service/Tasks';
 import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
+import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import NewDialog from '../dialogs/New';
@@ -12,6 +13,7 @@ const TaskGrid = () => {
     const [tasks, setTasks] = useState([]);
     const [newVisible, setNewVisible] = useState(false);
     const [gridSelected, setGridSelected] = useState(null);
+    const [editData, setEditData] = useState(null);
     useEffect(() => {
         setTasks(TaskService.getTasksData());
     }, []);
@@ -26,12 +28,25 @@ const TaskGrid = () => {
       text: 'Concluído',
       id: 2
     }];
+
     const priorityString = ['Baixa', 'Média', 'Alta']
 
     const handleEdit = (item) => {
         // Implementar a lógica de edição do item
         console.log('Editar item:', item);
     };
+
+    const onDeleteTask = (event) => {
+      confirmPopup({
+          target: event.currentTarget,
+          message: 'Tem certeza que deseja apagar essa tarefa',
+          icon: 'pi pi-info-circle',
+          defaultFocus: 'reject',
+          acceptClassName: 'p-button-danger',
+          accept,
+          reject
+      });
+  };
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -46,14 +61,14 @@ const TaskGrid = () => {
       };
       
       const statusBodyTemplate = (task) => {
-        return <Tag value={statusString[task.taskStatus]} severity={getSeverity(task)}></Tag>;
+        return <Tag value={statusString[task.taskStatus].text} severity={getSeverity(task.taskStatus)}></Tag>;
     };
       
       const header = (
         <div className="align-items-center justify-content-between">
+           <ConfirmPopup/>
            <Button label="Novo" icon="pi pi-plus" size="small" onClick={() => setNewVisible(true)} />
-           <Button label="Apagar" icon="pi pi-trash" size="small" severity="danger" disabled={!gridSelected}/>
-           <NewDialog setVisible={setNewVisible} newVisible={newVisible}/>
+           <NewDialog setVisible={setNewVisible} newVisible={newVisible} editData={editData}/>
         </div>
       );
       const footer = `Existem ${tasks ? tasks.length : 0} tarefas cadastradas.`;
@@ -74,6 +89,17 @@ const TaskGrid = () => {
         }
     };
 
+    const actionBodyTemplate = (rowData) => {
+      return (
+          <React.Fragment>
+              <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => {
+                setNewVisible(true)
+                setEditData(rowData)
+              }} />
+          </React.Fragment>
+      );
+  };
+
     const statusEditor = (options) => {
       return (
           <Dropdown
@@ -90,11 +116,12 @@ const TaskGrid = () => {
 
     return (
         <div className="grid">
-          <DataTable size='small' editMode="cell" selection={gridSelected} value={tasks} onSelectionChange={(e) => setGridSelected(e.value)} selectionMode="single" rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
+          <DataTable size='small' editMode="cell" value={tasks} rows={9} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '65rem'}}>
             <Column field="name" header="Descrição"></Column>
             <Column field="price" header="Responsável" body={priceBodyTemplate}></Column>
             <Column header="Prioridade" body={priorityBodyTemplate} align="center" alignHeader="center"></Column>
-            <Column header="Status" body={statusBodyTemplate} align="center" alignHeader="center" editor={(options) => statusEditor(options)}></Column>
+            <Column header="Status" body={statusBodyTemplate} align="center" alignHeader="center"></Column>
+            <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '3rem' }}></Column>
           </DataTable>
         </div>
     );
