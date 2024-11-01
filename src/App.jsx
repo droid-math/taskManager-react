@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'primereact/button';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Menu } from 'primereact/menu';
-import { Panel } from 'primereact/panel';
-import { Rating } from 'primereact/rating';
-import { Tag } from 'primereact/tag';
-import TaskGrid from './components/grid/Grid';
-import LeftMenu from './components/menu/Menu';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/login/Login';
+import Dashboard from './pages/dashboard/Dashboard';
 
 import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import './App.css';
 
-
-const App = () => {
+function App() {
   return (
-    <div className='app flex'>
-      <LeftMenu />
-      <div>
-        <TaskGrid />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/login" />} /> 
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
