@@ -28,7 +28,7 @@ const LeftMenu = () => {
       ]);
     return (
       <div className="mr-4 font-semibold text-lg">
-        <Menu model={items} style={{height: "95vh", width: "15vw"}}/>
+        <Menu model={items} style={{height: "95vh", width: "280px"}}/>
         <NewUserDialog setNewUserWindow={setNewUserWindow} newUserWindow={newUserWindow} />
         <UsersDialog setUsersWindow={setUsersWindow} usersWindow={usersWindow} />
       </div>

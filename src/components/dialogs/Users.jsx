@@ -29,7 +29,7 @@ const UsersDialog = ({ setUsersWindow, usersWindow }) => {
         }
     };
 
-    const onConfirmDelete = () => {
+    const onConfirmDelete = (rowData) => {
         confirmDialog({
             message: 'Você realmente quer deletar esse usuário?',
             header: 'Confirmação',
@@ -38,12 +38,23 @@ const UsersDialog = ({ setUsersWindow, usersWindow }) => {
             acceptClassName: 'p-button-danger',
             acceptLabel: 'Sim',
             rejectLabel: 'Não',
-            accept,
+            accept: () => accept(rowData),
             reject
         });
     };
 
-    const accept = () => {
+    const accept = async (rowData) => {
+        try {
+            const response = await axios.delete(`http://localhost:5000/users/${rowData.userid}`)
+            if (response.status === 200) {
+                fetchUsers();
+            } else {
+                const errorData = await response.json()
+                alert(errorData.message || "Erro ao excluir usuário")
+            }
+        } catch (error) {
+            console.error('Erro no processo:', error);
+        }
     }
 
     const reject = () => {
@@ -52,7 +63,7 @@ const UsersDialog = ({ setUsersWindow, usersWindow }) => {
     const actionBodyTemplate = (rowData) => {
       return (
           <React.Fragment>
-              <Button icon="pi pi-trash" severity='danger' rounded outlined className="mr-2" onClick={onConfirmDelete}/>
+              <Button icon="pi pi-trash" severity='danger' rounded outlined className="mr-2" onClick={() => onConfirmDelete(rowData)}/>
           </React.Fragment>
       );
   };
@@ -65,7 +76,7 @@ const UsersDialog = ({ setUsersWindow, usersWindow }) => {
   return (
     <Dialog visible={usersWindow} header="Usuários" style={{ width: '500px', height: '480px' }} onShow={onShowUsers} onHide={() => setUsersWindow(false)}>
       <div className="grid">
-          <DataTable size='small' showHeaders={false} value={users} rows={10} paginator tableStyle={{ width: '480px'}}>
+          <DataTable size='small' showHeaders={false} value={users} rows={10} paginator tableStyle={{ width: '480px', height: '314px'}}>
             <Column body={iconUserTemplate} exportable={false} style={{ minWidth: '1rem' }}></Column>
             <Column field="name" style={{ minWidth: '22rem' }}></Column>
             <Column body={actionBodyTemplate} exportable={false} style={{ width: '100px' }}></Column>

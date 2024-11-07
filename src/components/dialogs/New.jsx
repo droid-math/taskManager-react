@@ -42,7 +42,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
 
 	const prepareDialog = () => {
 		if (editData) {
-			setNewTaskOwner(users.find(p => p.userid === editData.usuario.id));
+			setNewTaskOwner(users.find(p => p.userid === editData.user.id));
 			setNewTaskPriority(priorities.find(p => p.typeName === editData.priority))
 			setTaskName(editData.name)
 			setTaskDescription(editData.description)
@@ -57,6 +57,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
 			name: taskName,
 			description: taskDescription,
 			owner: newTaskOwner.userid,
+			ownerName: newTaskOwner.name,
 			priority: newTaskPriority.typeName
 		});
 	
@@ -148,7 +149,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
     }
 
     return (
-        <Dialog visible={newVisible} header={title} style={{width: '60vw', height: '75vh'}} onShow={onShowWindow} onHide={onHideDialog}>
+        <Dialog visible={newVisible} header={title} style={{width: '60vw', height: '31rem'}} onShow={onShowWindow} onHide={onHideDialog}>
             <Toast ref={toast} />
             <ConfirmDialog/>
             <div className="flex flex-column gap-2">
@@ -186,7 +187,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
             </div>
             <div className="flex flex-column gap-2 mt-2">
                 <label htmlFor="taskDescription">Descrição da Tarefa: </label>
-                <InputTextarea autoResize value={taskDescription} id="taskDescription" onChange={(e) => setTaskDescription(e.target.value)} rows={8} cols={30} />
+                <InputTextarea autoResize className="flex-grow-1 w-full" value={taskDescription} id="taskDescription" onChange={(e) => setTaskDescription(e.target.value)} rows={8} cols={30} />
             </div>
                 <div className="dialogBtns pt-2 flex justify-content-end">
                 <Button label="Deletar" visible={editMode} onClick={onConfirmDelete} severity="danger" icon="pi pi-trash" size="small"/>

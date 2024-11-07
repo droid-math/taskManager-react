@@ -55,9 +55,9 @@ const NewUserDialog = ({ setNewUserWindow, newUserWindow }) => {
     }
 
     return (
-        <Dialog visible={newUserWindow} className='dialog' header="Criar um Novo Usuário" style={{ width: '500px', height: '480px' }} onHide={onHide}>
+        <Dialog visible={newUserWindow} className='dialog' header="Criar um Novo Usuário" style={{ width: '500px', height: '484px' }} onHide={onHide}>
             <Toast ref={toast} />
-            <div class="flex justify-content-center flex-wrap">
+            <div className="flex justify-content-center flex-wrap">
                 <div className='text-center'>
                     <Image imageStyle={{borderRadius: "50%"}} src={userPicture} width='100' height='100'/>
                     <FileUpload name="foto" accept="image/*" className='mt-2' chooseLabel="Escolher Imagem" mode='basic' customUpload onSelect={onFileSelect}/>

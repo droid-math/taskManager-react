@@ -60,11 +60,11 @@ const TaskGrid = () => {
     };
 
     const ownerBodyTemplate = (task) => {
-      const photo = task.usuario.photo ? task.usuario.photo : userImage
+      const photo = task.user && task.user.photo ? task.user.photo : userImage
       return (
         <div className='flex flex-wrap text-center justify-items-center align-items-center'>
           <Avatar image={photo} size="large" shape="circle" />
-          <span className='vertical-align-baseline ml-2'>{task.usuario.name}</span>
+          <span className='vertical-align-baseline ml-2'>{task.user.name}</span>
         </div>
       );
     };
@@ -120,8 +120,8 @@ const TaskGrid = () => {
 
     return (
         <div className="grid">
-          <DataTable size='small' style={{height: "95vh"}} editMode="cell" value={tasks} rows={9} alwaysShowPaginator={false} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '60vw'}}>
-            <Column field="name" header="Tarefa:"></Column>
+          <DataTable size='small' editMode="cell" value={tasks} rows={9} alwaysShowPaginator={false} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '82vw'}}>
+            <Column field="name" header="Tarefa"></Column>
             <Column header="Responsavél" body={ownerBodyTemplate} align="center" alignHeader="center"></Column>
             <Column header="Prioridade" body={priorityBodyTemplate} align="center" alignHeader="center"></Column>
             <Column header="Status" body={statusBodyTemplate} align="center" alignHeader="center"></Column>
