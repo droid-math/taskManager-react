@@ -13,9 +13,7 @@ const Dashboard = () => {
   return (
     <div className='app flex'>
       <LeftMenu />
-      <div>
-        <TaskGrid />
-      </div>
+      <TaskGrid />
     </div>
   );
 };

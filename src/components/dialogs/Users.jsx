@@ -10,11 +10,13 @@ import NewDialog from '../dialogs/New';
 import { Avatar } from 'primereact/avatar';
 import { Dialog } from 'primereact/dialog';
 import '../grid/Grid.scss';
+import NewUserDialog from '../dialogs/NewUser';
 import userImage from '../../assets/user.png'
 import axios from 'axios';
 
 const UsersDialog = ({ setUsersWindow, usersWindow }) => {
     const [users, setUsers] = useState([]);
+    const [newUserWindow, setNewUserWindow] = useState(false)
 
     const onShowUsers = () => {
         fetchUsers();
@@ -74,16 +76,20 @@ const UsersDialog = ({ setUsersWindow, usersWindow }) => {
     };
 
   return (
-    <Dialog visible={usersWindow} header="Usuários" style={{ width: '500px', height: '480px' }} onShow={onShowUsers} onHide={() => setUsersWindow(false)}>
-      <div className="grid">
-          <DataTable size='small' showHeaders={false} value={users} rows={10} paginator tableStyle={{ width: '480px', height: '314px'}}>
-            <Column body={iconUserTemplate} exportable={false} style={{ minWidth: '1rem' }}></Column>
-            <Column field="name" style={{ minWidth: '22rem' }}></Column>
-            <Column body={actionBodyTemplate} exportable={false} style={{ width: '100px' }}></Column>
-          </DataTable>
-          <ConfirmDialog/>
-        </div>
-    </Dialog>
+    <div>
+        <Dialog visible={usersWindow} header="Usuários" style={{ width: '500px', height: '540px' }} onShow={onShowUsers} onHide={() => setUsersWindow(false)}>
+          <Button label="Novo" className="mb-3" icon="pi pi-plus" size="small" onClick={() => setNewUserWindow(true)} />
+          <div className="grid">
+              <DataTable size='small' showHeaders={false} value={users} rows={10} paginator tableStyle={{ width: '480px', height: '314px'}}>
+                <Column body={iconUserTemplate} exportable={false} style={{ minWidth: '1rem' }}></Column>
+                <Column field="name" style={{ minWidth: '22rem' }}></Column>
+                <Column body={actionBodyTemplate} exportable={false} style={{ width: '100px' }}></Column>
+              </DataTable>
+              <ConfirmDialog/>
+            </div>
+        </Dialog>
+        <NewUserDialog setNewUserWindow={setNewUserWindow} newUserWindow={newUserWindow} />
+    </div>
   );
 };
 

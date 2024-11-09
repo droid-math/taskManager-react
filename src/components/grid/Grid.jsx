@@ -120,7 +120,7 @@ const TaskGrid = () => {
 
     return (
         <div className="grid">
-          <DataTable size='small' editMode="cell" value={tasks} rows={9} alwaysShowPaginator={false} paginator header={header} footer={footer} scrollable={true} tableStyle={{ width: '82vw'}}>
+          <DataTable size='small' editMode="cell" value={tasks} rows={9} alwaysShowPaginator={false} paginator header={header} footer={footer} scrollable={true} style={{ width: '100%'}}>
             <Column field="name" header="Tarefa"></Column>
             <Column header="Responsavél" body={ownerBodyTemplate} align="center" alignHeader="center"></Column>
             <Column header="Prioridade" body={priorityBodyTemplate} align="center" alignHeader="center"></Column>

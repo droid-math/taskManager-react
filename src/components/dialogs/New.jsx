@@ -42,7 +42,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
 
 	const prepareDialog = () => {
 		if (editData) {
-			setNewTaskOwner(users.find(p => p.userid === editData.user.id));
+			setNewTaskOwner(users.find(p => p.userid === editData.user.userid));
 			setNewTaskPriority(priorities.find(p => p.typeName === editData.priority))
 			setTaskName(editData.name)
 			setTaskDescription(editData.description)
@@ -57,7 +57,7 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
 			name: taskName,
 			description: taskDescription,
 			owner: newTaskOwner.userid,
-			ownerName: newTaskOwner.name,
+            ownerName: newTaskOwner.name,
 			priority: newTaskPriority.typeName
 		});
 	
@@ -71,12 +71,14 @@ const NewDialog = ({setVisible, newVisible, setEditData, editData}) => {
     const handleUpdateTask = async () => {
 		try {
 			const response = await axios.put(`http://localhost:5000/tasks/${editData.id}`, {
-			name: taskName,
-			description: taskDescription,
-			owner: newTaskOwner.userid,
-			priority: newTaskPriority.typeName,
-			status: newTaskStatus.statusName
-		});
+                name: taskName,
+                description: taskDescription,
+                owner: newTaskOwner.userid,
+                ownerName: newTaskOwner.name,
+                priority: newTaskPriority.typeName,
+                startDate: editData.startDate,
+                status: newTaskStatus.statusName
+		    });
         toast.current.show({severity:'success', summary: 'Sucesso', detail:'Tarefa Atualizada com Sucesso!', life: 2000});
         onHideDialog();
 		} catch (error) {

@@ -23,7 +23,6 @@ const NewUserDialog = ({ setNewUserWindow, newUserWindow }) => {
                 password: password,
                 foto: foto
             });
-        
             toast.current.show({severity:'success', summary: 'Sucesso', detail:'Usuário criado com Sucesso!', life: 2000});
             setNewUserWindow(false);
         } catch (error) {
@@ -40,10 +39,10 @@ const NewUserDialog = ({ setNewUserWindow, newUserWindow }) => {
 
     const convertImageToBase64 = (file) => {
         return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
         });
     };
 
@@ -54,8 +53,15 @@ const NewUserDialog = ({ setNewUserWindow, newUserWindow }) => {
         setNewUserWindow(false)
     }
 
+    const footerContent = (
+        <div>
+            <Button label="Cancelar" onClick={() => setNewUserWindow(false)} className="p-button-text" />
+            <Button label="Criar" icon="pi pi-plus" onClick={handleCreateUser} autoFocus />
+        </div>
+    );
+
     return (
-        <Dialog visible={newUserWindow} className='dialog' header="Criar um Novo Usuário" style={{ width: '500px', height: '484px' }} onHide={onHide}>
+        <Dialog visible={newUserWindow} className='dialog' header="Criar um Novo Usuário" footer={footerContent} style={{ width: '500px', height: '540px' }} onHide={onHide}>
             <Toast ref={toast} />
             <div className="flex justify-content-center flex-wrap">
                 <div className='text-center'>
@@ -70,10 +76,6 @@ const NewUserDialog = ({ setNewUserWindow, newUserWindow }) => {
             <div className="p-field flex flex-column gap-2 mt-2">
                 <label htmlFor="password">Senha:</label>
                 <InputText id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <div className="p-dialog-footer">
-                <Button label="Cancelar" onClick={() => setNewUserWindow(false)} className="p-button-text" />
-                <Button label="Criar" icon="pi pi-plus" onClick={handleCreateUser} autoFocus />
             </div>
         </Dialog>
     );
